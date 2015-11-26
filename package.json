@@ -1,0 +1,19 @@
+{
+  "name": "Macomb County Grant Website",
+  "description": "this allows users to search for grants online & such",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcopley08/grant-website"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "express": "~4.9.x",
+    "jade": "*",
+    "le_node": "^1.1.1",
+    "querystring": "*",
+    "request": "*",
+    "mongoose": "^4.1.11"
+  }
+}

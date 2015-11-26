@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1 id="message_place"></h1>
+		<h2 id="update_place"></h2>
+
+		<script type="text/javascript">
+
+		$(document).ready(function() {
+			$("#message_place").text(message);
+			$("#update_place").text(JSON.stringify(update, null, 2));
+			
+		});
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+layout of website:
+
+- we'll have grant data in a sql database
+- search will search all grants name's to see if they're a match (we can do a query for all of them and search manually, its less than 1000 strings, not terrible) (or we do a SQL query, preferred)
+- have a list of categories that would query the sql database by the name of the category. a "list all" or something equivalent should be available here.
+- on the main page where it lists upcoming events, we do a sql query on the upcoming deadlines. it would be a query that takes today's date and makes sure everything else it greater than it.
+- USE MONGODB cloud for database, easier, has an online GUI... just use it...
+- create a collection for posts ma wants to keep updated with the website.
+
+tmplate grabbed from: http://html5up.net/ (future imperfect)
+
+document model for grants:
+
+{
+	"name": "name_of_grant",
+	"link": "http://link.com",
+	"deadline": Month/Day/Year date format, figure this out in mongo
+	"category": "agriculture",
+	"eligibility": "developers, engineers, innovators",
+	"award": 400000,
+	"description": "this is a great award!"
+}
+
+
+
+
+miami website influence:
+http://miamidade.gov/wps/portal/Main/grants/!ut/p/c5/04_SB8K8xLLM9MSSzPy8xBz9CP0os3hnQ29jA38vF1-3AAsXA09PPzPzEFNTAyAAykcC5d0dPUzMfQwM_I3CDAyM_EyDAw1Cg40NPI0J6PbSj0rPyU8C2hMOshm_SSB5AxzA0UDfzyM_N1W_IDeiMjggXREALNhWgw!!/dl3/d3/L0lDU0lKSmdrS0NsRUpDZ3BSQ1NBL29Ob2dBRUlRaGpFS0lRQUJHY1p3aklDa3FTaFNOQkFOYUEhIS80QzFiOVdfTnIwZ0RFU1pJSlJERVNaTUpRaUlrZmchIS83X0MxSzMwT0pETTdOREUwSUlOMThCTlEzMDA3L1hWU2NYOTAwNDAwMDYvaWJtLmludi8zMDk3MzQ3NjE2NTMvb3JnLmFwYWNoZS5teWZhY2VzLnBvcnRsZXQuTXlGYWNlc0dlbmVyaWNQb3J0bGV0LlZJRVdfSUQvJTB2aWV3LmpzcA!!/

@@ -103,7 +103,7 @@ app.get('/update_grant', function(req, res) {
     "link": "http://www.grants.gov/web/grants/view-opportunity.html?oppId=279141",
     "deadline": new Date("2016-11-24"),
     "category": "human-services",
-    "eligibility": "economic-community-development",
+    "eligibility": "schools, colleges, small businesses",
     "award": 10000,
     "description": "seeks proposals for the preservation or restoration of American films, from any era, in which women have held significant creative positions"
   };

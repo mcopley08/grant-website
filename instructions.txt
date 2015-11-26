@@ -1,0 +1,111 @@
+For mother <333333:
+
+so the two things you'd be doing to manage the website is to add grants and add posts.
+
+in all of these instructions, only change values TO THE RIGHT side of the colon (:)
+
+how to add a grant
+
+go to the "index.js" file and go to line 99. it should say something like this:
+
+	var query = { "name": "Trade Adjustment Assistance for Firms Program" };
+
+to set the name of the new grant, change the "Trade Adjustment Assistance for Firms Program" to whatever you want your new grant
+to be called. Remember to enclose the name of the grant in double quotes like above.
+
+Next, we need to update lines 102-108 with information specific to the new grant. 
+
+line 102 (name) this is simply the same name we just placed on line 99.
+
+line 103 (link) you would just change this link to point to your new grant.
+
+line 104 (deadline) you would just change this date to the due date of the new grant. the format is MM-DD-YYYY
+
+line 105 (category) is which of the categories it falls into. this one might be a little tricky, but I've listed 
+all of the possibilities below. When picking a category, make sure to always pick one of the values on the 
+left hand side. For example, if the category was "Children and Youth" on the website, we see here that 
+it corresponds to "children-and-youth". So "children-and-youth" would be the correct value to set the category to:
+
+var categories = {
+					"arts-culture-libraries": "Arts, Culture, and Libraries",
+					"children-and-youth": "Children and Youth",
+					"economic-community-development": "Economic and Community Development",
+					"education": "Education",
+					"miscellaneous": "General/Miscellaneous",
+					"health": "Health",
+					"homeland-security": "Homeland Security",
+					"housing-homeless": "Housing / Homeless",
+					"human-services": "Human Services",
+					"justice-crime-prevention": "Justice & Crime Prevention",
+					"media-communications": "Media & Communications",
+					"natural-resources": "Natural Resources",
+					"parks-and-recreation": "Parks and Recreation",
+					"technology-research": "Technology & Research",
+					"transportation": "Transportation"
+				};
+
+so an example of this line might be:
+
+	"category": "transportation"
+
+line 106 (eligibility) ive simply copied this field from your excel spreadsheet into this field, so id keep doign that unless
+you wanted to change it a little bit!
+
+line 107 (award) this is simply how much the total sum of the grant. this one SHOULD NOT be enclosed in double-quotes.
+
+line 108 (description) this is just whatever you want to say about the grant to help people learn about it. I've simply copy & pasted this 
+field from your google sheets document, as well! :p haha
+
+Once you've changed all of these lines, start the website and visit: http://localhost:8080/update_grant
+if it was successful, it will tell you that on the webpage and it will show you the information you've just entered!
+
+
+
+**************************************************
+
+to update posts, we need to change a few values. Remember in all of these instructions, 
+only change values TO THE RIGHT side of the colon (:). :
+
+change line 127 of "index.js", which should look like: 
+
+	var query = { "name": "Resources for Food Tech Companies" };
+
+and change the "Resources for Food Tech Companies" to whatever you want the post to be named. 
+don't forget to include the double quotes!
+
+We'll now need to change lines 130-135 to create our new posts. ive included a breakdown of the lines below:
+
+line 130 (name) this is simply the same name we placed in line 127.
+
+line 131 (date) don't change this value, skip this one!
+
+line 132 (subheader) this is simply a sentence that dscribes the post if you'd like to include it.
+
+line 133 (author) this will be your name, "Lisa Copley"
+
+line 134 (description) this is where all of the text will be placed for your post!
+
+line 135 (links) this is a list of links you can include. the syntax is that whatever is here has to be 
+enclosed by brackets, and all of the values are separated by a comma. ill give a few examples below
+
+if you dont have any links:
+	"links": []
+
+if you have one link:
+	"links": [ "neopets.com" ]
+
+if you have more than one link:
+	"links": [ "neopets.com", "pokemon.com", "yugioh.com" ]
+
+
+Once you've changed all of these lines, start the website and visit: http://localhost:8080/update_post
+if it was successful, it will tell you that on the webpage and it will show you the information you've just entered!
+
+
+
+******************** starting the website ************************
+open "windows powershell", type in "node index.js", and press enter!
+
+
+as always, definitely let me know if something isn't working and ill be more than happy to help out :) 
+

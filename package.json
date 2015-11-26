@@ -1,5 +1,5 @@
 {
-  "name": "Macomb County Grants",
+  "name": "macomb-county-grants",
   "description": "this allows users to search for grants online & such",
   "version": "0.0.1",
   "engines": {

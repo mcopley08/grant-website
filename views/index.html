@@ -102,15 +102,23 @@
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="#">Upcoming Grant Deadlines</a></h2>
-										<p>Check out these cool grants before its too late!</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01" id="todays-date"></time>
-										<a href="#" class="author"><span class="name">Lisa Copley</span><img src="images/avatar.jpg" alt="" /></a>
+										<h2 style="text-align: center"><a href="#">Upcoming Grant Deadlines</a></h2>
+										<p style="text-align: center">Check out these cool grants before its too late!</p>
 									</div>
 								</header>
 							</article>
+
+							<div id="grants"></div>
+
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2 style="text-align: center"><a href="#">Recent Posts</a></h2>
+										<p style="text-align: center">These might be userful for your specific industry!</p>
+									</div>
+								</header>
+							</article>
+							<div id="posts"></div>
 
 						
 
@@ -121,6 +129,8 @@
 							</ul> -->
 
 					</div>
+
+					
 
 				<!-- Sidebar -->
 					<section id="sidebar">
@@ -364,14 +374,50 @@
 								<p>' + grants[i].eligibility + '</p> \
 							</div> \
 							<div class="meta"> \
-								<time class="published" datetime="2015-10-25">' + months[grants[i].month] + ' ' + grants[i].day + ', ' + grants[i].year + '</time> \
+								<time class="published" datetime="2015-10-25">DUE<br>' + months[grants[i].month] + ' ' + grants[i].day + ', ' + grants[i].year + '</time> \
 								<a href="#" class="author"><span class="name">' + grants[i].award + '</span><img src="images/avatar.jpg" alt="" /></a> \
 							</div> \
 						</header> \
 						<p>' + grants[i].description + '<br>Link: <a href="' + grants[i].link + '">' + grants[i].link + '</a></p> \
 					</article>';
 
-					$("#main").append(post);
+					$("#grants").append(post);
+				}
+
+				// populating the posts on the homepage!
+				for (var i in posts) {
+
+					temp = new Date(posts[i].date_posted);
+					temp = temp.toString().split(" ");
+					posts[i].month = temp[1];
+					posts[i].day = temp[2];
+					posts[i].year = temp[3];
+
+					// grants[i].year = grants[i].deadline.substring(0,4);
+					// grants[i].month = grants[i].deadline.substring(5,7);
+					// grants[i].day = grants[i].deadline.substring(0,2);
+
+					post = '<article class="post"> \
+						<header> \
+							<div class="title"> \
+								<h2><a href="">' + posts[i].name + '</a></h2> \
+								<p>' + posts[i].subheader + '</p> \
+							</div> \
+							<div class="meta"> \
+								<time class="published" datetime="2015-10-25">POSTED<br>' + months[posts[i].month] + ' ' + posts[i].day + ', ' + posts[i].year + '</time> \
+								<a href="#" class="author"><span class="name">' + posts[i].author + '</span><img src="images/avatar.jpg" alt="" /></a> \
+							</div> \
+						</header> \
+						<p>' + posts[i].description;
+
+						for (var j in posts[i].links) {
+
+							post += '<br>Link ' + j + ': <a href="' + posts[i].links[j] + '">' + posts[i].links[j] + '</a>';
+						} 
+
+					post += '</p></article>';
+
+					$("#posts").append(post);
 				}
 
 			</script>

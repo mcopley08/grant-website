@@ -19,10 +19,12 @@ app.use(bodyParser.urlencoded({
 }));
 
 require('./models/Grants');
+require('./models/Posts');
 
 mongoose = require('mongoose'),
 fs = require('fs');
 Grants = mongoose.model('Grants');
+Posts = mongoose.model('Posts');
 
 // connecting to the mongodb database
 var mongoUri = 'mongodb://lacopley:pokemom@ds057944.mongolab.com:57944/macomb-county-grants';
@@ -62,13 +64,22 @@ app.get('/', function(req, res) {
   // query mongodb for the upcoming deadlines for grants
   var today = new Date();
 
-  Grants.find({ deadline: { $gt: today } }).sort({deadline: 'ascending'}).exec(function(err, docs) {
+  Grants.find({ deadline: { $gt: today } }).sort({deadline: 'ascending'}).limit(5).exec(function(err, docs) {
     if (err) return res.send(500, { error: err });
-    console.log("succesfully found documents");
+    console.log("succesfully found grant documents");
     console.log(docs);
-    res.render('index', {grants: docs});
+
+    // query mongodb for the latest articles
+    Posts.find({}).sort({deadline: 'descending'}).limit(5).exec(function(err, more_docs) {
+      if (err) return res.send(500, { error: err });
+      console.log("succesfully found post documents");
+      console.log(more_docs);
+      res.render('index', {grants: docs, posts: more_docs});
+    });
   });
-  // query mongodb for the latest articles
+
+
+
 });
 
 app.get('/search', function(req, res) {
@@ -81,7 +92,7 @@ app.get('/search', function(req, res) {
   });
 });
 
-app.get('/update', function(req, res) {
+app.get('/update_grant', function(req, res) {
 
   // ***************** THIS IS THE CODE YOU MODIFY!!!! *****************************
 
@@ -103,6 +114,33 @@ app.get('/update', function(req, res) {
     if (err) return res.send(500, { error: err });
     console.log("succesfully added grant to the mongodb database");
     var message = "succesfully added grant to the mongodb database";
+    console.log(update);
+    res.render('update', {message: message, update: update});
+  });
+
+});
+
+app.get('/update_post', function(req, res) {
+
+  // ***************** THIS IS THE CODE YOU MODIFY!!!! *****************************
+
+  var query = { "name": "Resources for Food Tech Companies" };
+
+  var update = {
+    "name": "Resources for Food Tech Companies",
+    "date_posted": new Date(),
+    "subheader": "More companies are looking to invest in this emerging market",
+    "author": "Michael Copley",
+    "description": "bleh bluh balh lots of stuff about food technology :)",
+    "links": [ "https://agfunder.com/", "http://www.foodessentials.com/" ]
+  };
+
+  // *******************************************************************************
+
+  Posts.findOneAndUpdate(query, update, { upsert: true }, function(err, doc){
+    if (err) return res.send(500, { error: err });
+    console.log("succesfully added post to the mongodb database");
+    var message = "succesfully added post to the mongodb database";
     console.log(update);
     res.render('update', {message: message, update: update});
   });

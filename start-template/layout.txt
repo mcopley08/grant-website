@@ -22,6 +22,18 @@ document model for grants:
 }
 
 
+document model for posts:
+
+{
+	"name": "name_of_post",
+	"date_posted": Timestamp,
+	"subheader": "example text",
+	"author": "Lisa Copley, most likely!!",
+	"text": "heyyy here it is!"
+	"links": []
+}
+
+
 
 
 miami website influence:

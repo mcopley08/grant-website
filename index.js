@@ -60,14 +60,25 @@ app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res) {
   // query mongodb for the upcoming deadlines for grants
+  var today = new Date();
+
+  Grants.find({ deadline: { $gt: today } }).sort({deadline: 'ascending'}).exec(function(err, docs) {
+    if (err) return res.send(500, { error: err });
+    console.log("succesfully found documents");
+    console.log(docs);
+    res.render('index', {grants: docs});
+  });
   // query mongodb for the latest articles
-  res.render('index', {});
 });
 
 app.get('/search', function(req, res) {
 
-  // query mongodb, check in javascript or search for substring in the grant's title
-  res.render('search', {ra: req.query.keywords} );
+  Grants.find({ name: { "$regex": req.query.keywords, "$options": "i" } }).sort({deadline: 'ascending'}).exec(function(err, docs) {
+    if (err) return res.send(500, { error: err });
+    console.log("succesfully found documents2");
+    console.log(docs);
+    res.render('search', {search_terms: req.query.keywords, grants: docs});
+  });
 });
 
 app.get('/update', function(req, res) {

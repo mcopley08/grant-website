@@ -2,5 +2,6 @@ html
 	head
 		script.
 			var category = "!{category}";
+			var grants = !{JSON.stringify(grants, null, 2)};
 
 	include category.html

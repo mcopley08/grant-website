@@ -72,17 +72,21 @@ app.get('/search', function(req, res) {
 
 app.get('/update', function(req, res) {
 
+  // ***************** THIS IS THE CODE YOU MODIFY!!!! *****************************
+
   var query = { "name": "Trade Adjustment Assistance for Firms Program" };
 
   var update = {
     "name": "Trade Adjustment Assistance for Firms Program",
     "link": "http://www.grants.gov/web/grants/view-opportunity.html?oppId=279141",
-    "deadline": new Date(2015, 11, 24),
-    "category": "economic-community-development",
-    "eligibility": "cities, county, nonprofit, colleges",
-    "award": 1500000,
-    "description": "cost shared technical assistance to strengthen the competitiveness of American companies negatively impacted by increasing imports"
+    "deadline": new Date("2016-11-24"),
+    "category": "human-services",
+    "eligibility": "economic-community-development",
+    "award": 10000,
+    "description": "seeks proposals for the preservation or restoration of American films, from any era, in which women have held significant creative positions"
   };
+
+  // *******************************************************************************
 
   Grants.findOneAndUpdate(query, update, { upsert: true }, function(err, doc){
     if (err) return res.send(500, { error: err });
@@ -96,7 +100,16 @@ app.get('/update', function(req, res) {
 
 app.get('/:category', function(req, res) {
   // draw some mongodb information
-  res.render('category', {category: req.params.category});
+
+  var query = { "category": req.params.category };
+
+  Grants.find(query).sort({deadline: 'ascending'}).exec(function(err, docs) {
+    if (err) return res.send(500, { error: err });
+    console.log("succesfully found documents");
+    console.log(docs);
+    res.render('category', {category: req.params.category, grants: docs});
+  });
+
 });
 
 
